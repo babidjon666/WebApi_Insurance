@@ -1,0 +1,321 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Контейнер профиля */
+.dashboard-container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 1350px;
+    height: 850px;
+    padding: 25px 20px;
+    text-align: center;
+}
+
+/* Заголовок профиля */
+.dashboard-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Навигация */
+.dashboard-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+/* Кнопки навигации */
+.nav-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    flex: 1;
+    margin: 0 5px;
+}
+
+/* Наведение на кнопки */
+.nav-button:hover {
+    background: #0056b3;
+}
+
+/* Контент секции */
+.dashboard-content {
+    margin-top: 20px;
+}
+
+/* Контейнер для двух секций: Personal Info и Passport Info */
+.section-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Промежуток между колонками */
+    flex-wrap: wrap; /* Чтобы элементы корректно отображались на мобильных устройствах */
+}
+
+/* Стили для личной информации */
+.personal-info {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для паспортной информации */
+.passport-info {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для заголовков секций */
+.personal-info h3, .passport-info h4 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Стили для текста в секциях */
+.personal-info p, .passport-info p {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+.personal-info-header {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #ddd; /* Линия под заголовком */
+    padding-bottom: 5px;
+}
+.personal-info-content p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    display: flex;
+    align-items: center; /* Выравниваем текст и иконки */
+}
+.personal-info-label {
+    font-weight: 600;
+    color: #000; /* Акцентируем метки */
+    margin-right: 8px; /* Отступ между меткой и значением */
+}
+/* Добавим иконки через псевдоэлементы */
+.personal-info-content p::before {
+    content: '•'; /* Замените на нужный символ или используйте иконку */
+    font-size: 1.2rem;
+    color: #007bff; /* Цвет иконки или символа */
+    margin-right: 8px;
+}
+
+/* Стили для кнопки редактирования */
+button[type="button"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+button[type="button"]:hover {
+    background-color: #0056b3;
+}
+
+/* Для мобильных устройств: сделать колонки по центру */
+@media (max-width: 768px) {
+    .section-container {
+        flex-direction: column;
+    }
+
+    .personal-info, .passport-info {
+        margin-bottom: 20px; /* Добавляем отступ между колонками */
+    }
+}
+
+/* Стили для формы редактирования паспорта */
+.edit-section {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+}
+
+
+
+
+
+/* Стили для формы в режиме редактирования */
+input[type="text"],
+input[type="date"] {
+    width: 48%;
+    margin-right: 4%;
+    display: inline-block;
+}
+
+/* Перенос на новую строку для последнего поля */
+input[type="date"]:last-child {
+    margin-right: 0;
+}
+
+/* Стили для кнопок в форме */
+input,
+button {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+    background-color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+
+
+
+.custom-modal {
+    max-width: 800px;
+    width: 100%;
+}
+
+
+.custom-modal .ant-modal-title {
+    color: #1890ff;
+    font-size: 1.5rem;
+}
+
+.custom-modal .ant-modal-body {
+    padding: 24px;
+    font-size: 1rem;
+}
+
+/* Контейнер для горизонтального расположения секций */
+.document-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Пространство между секциями */
+}
+
+/* Стили для секций документов */
+.document-section {
+    flex: 1; /* Равномерное распределение пространства */
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.document-section h3 {
+    font-size: 1.25rem;
+    color: #1890ff;
+    margin-bottom: 10px;
+}
+
+.document-details p {
+    margin: 8px 0;
+    font-size: 1rem;
+}
+
+.document-details strong {
+    color: #333;
+    font-weight: 600;
+}
+
+.profile-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Заголовок профиля */
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Аватар */
+.profile-avatar {
+    border: 3px solid #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Информация о профиле */
+.profile-info {
+    text-align: left;
+}
+
+.profile-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.profile-details {
+    margin-top: 10px;
+}
+
+.profile-name,
+.profile-surname {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 5px 0;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.profile-name:hover,
+.profile-surname:hover {
+    color: #2575fc;
+}
+
+/* Акценты */
+.profile-name::before,
+.profile-surname::before {
+    content: '•';
+    color: #2575fc;
+    margin-right: 8px;
+    font-size: 1.2rem;
+}

@@ -29,5 +29,18 @@ namespace backend.Repositories
                 throw new Exception("Ошибка при сохранении данных", ex);
             }
         }
+
+        public async Task<bool> IsUserInDataBase(int userId)
+        {
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

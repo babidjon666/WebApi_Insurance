@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using backend.Data;
 using backend.Interfaces.Auth;
 using backend.Models;
 using backend.Models.Documents;
@@ -18,10 +19,12 @@ namespace backend.Controllers
     public class AuthController : Controller
     {
         private readonly IAuthService authService;
+        private readonly JWTSettings jwtService;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, JWTSettings jwtService)
         {
             this.authService = authService;
+            this.jwtService = jwtService;
         }
 
         [HttpPost("Register")]
@@ -58,7 +61,9 @@ namespace backend.Controllers
             try
             {
                 var user = await authService.LoginService(loginRequest.Login, loginRequest.Password);
-                return Ok($"{user.Id},{user.Role}");
+
+                var token = jwtService.GenerateJwtToken(user); // Используем сервис для генерации токена
+                return Ok(new { Token = token, UserId = user.Id, Role = user.Role });
             }
             catch (Exception ex)
             {
