@@ -5,6 +5,7 @@ import { Avatar, Menu, Modal} from 'antd';
 import { getProfile } from "./ClientService";
 
 import { Profile } from "./Profile";
+import { Terms } from './Terms';
 
 export const ClientProfile = () =>{
     const [user, setUser] = useState(null);
@@ -91,6 +92,9 @@ export const ClientProfile = () =>{
                     <Profile user={user} fetchProfile={fetchProfile}/>
                 )}
 
+                {activeSection === 'Terms' && user && (
+                    <Terms />
+                )}
             </div>
         </div>
     );

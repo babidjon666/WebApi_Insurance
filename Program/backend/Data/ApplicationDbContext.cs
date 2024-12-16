@@ -18,6 +18,7 @@ namespace backend.Data
         public DbSet<EmploymentContract> EmploymentContracts { get; set; }
         public DbSet<ResidentCard> ResidentCards { get; set; }
         public DbSet<TemporaryResidencePermit> TemporaryResidencePermits { get; set; }
+        public DbSet<Term> Terms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

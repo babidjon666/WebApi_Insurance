@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using backend.Interfaces.Profile;
 using backend.Repositories;
+using backend.Interfaces.Terms;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,11 +52,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Регистрация репозиториев
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+builder.Services.AddScoped<ITermsRepository, TermRepository>();
 
 // Регистрация сервисов
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<JWTSettings>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
+builder.Services.AddScoped<ITermService, TermService>();
 
 builder.Services.AddCors(options =>
 {
