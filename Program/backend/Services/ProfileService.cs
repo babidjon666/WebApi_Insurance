@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using backend.Interfaces.Profile;
 using backend.Models;
 using backend.Models.Documents;
-using backend.Models.DTO.Profile;
 
 namespace backend.Services
 {
@@ -18,45 +17,44 @@ namespace backend.Services
             this.profileRepository = profileRepository;
         }
 
-        public async Task EditEmploymentContractService(EmploymentContractDTO employmentContract)
+        public async Task EditEmploymentContractService(EmploymentContract employmentContract)
         {
-            if (employmentContract.userId < 0)
+            if (employmentContract.Id < 0)
             {
-                throw new Exception("userId  не может быть отрицательным");
+                throw new Exception("id  не может быть отрицательным");
             }
 
-            var newEmploymentContract = new EmploymentContract{
-                NumberOfContract = employmentContract.NumberOfContract,
-                Date = employmentContract.Date,
-                INN = employmentContract.INN,
-                KPP = employmentContract.KPP
-            };
-
-            await profileRepository.EditEmploymentContractAtDB(newEmploymentContract, employmentContract.userId);
+            await profileRepository.EditEmploymentContractAtDB(employmentContract, employmentContract.Id);
         }
 
-        public async Task EditPassportService(PassportDTO passport)
+        public async Task EditPassportService(Passport passport)
         {
-            if (passport.UserId < 0)
+            if (passport.Id < 0)
             {
-                throw new Exception("userId  не может быть отрицательным");
+                throw new Exception("id  не может быть отрицательным");
             }
 
-            var newPassport = new Passport{
-                DocumentNumber = passport.DocumentNumber,
-                Serie = passport.Serie,
-                Sex = passport.Sex,
-                PlaceOfBirthday = passport.PlaceOfBirthday,
-                CodeOfState = passport.CodeOfState,
-                Nationality = passport.Nationality,
-                IssuingAuthority = passport.IssuingAuthority,
-                PlaceOfResidence = passport.PlaceOfResidence,
-                DateOfBirth = passport.DateOfBirth,
-                DateOfIssue = passport.DateOfIssue,
-                DateOfExpiry = passport.DateOfExpiry
-            };
+            await profileRepository.EditPassportAtDB(passport, passport.Id);
+        }
 
-            await profileRepository.EditPassportAtDB(newPassport, passport.UserId);
+        public async Task EditResidentCardService(ResidentCard residentCard)
+        {
+            if (residentCard.Id < 0)
+            {
+                throw new Exception("id  не может быть отрицательным");
+            }
+
+            await profileRepository.EditResidentCardAtDB(residentCard, residentCard.Id);
+        }
+
+        public async Task EditTemporaryResidencePermitService(TemporaryResidencePermit temporaryResidencePermit)
+        {
+            if (temporaryResidencePermit.Id < 0)
+            {
+                throw new Exception("id  не может быть отрицательным");
+            }
+
+            await profileRepository.EditTemporaryResidencePermitAtDB(temporaryResidencePermit, temporaryResidencePermit.Id);
         }
 
         public async Task<UserModel> GetUserProfileService(int userId)

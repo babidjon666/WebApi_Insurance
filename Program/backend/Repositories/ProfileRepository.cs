@@ -68,6 +68,51 @@ namespace backend.Repositories
             await Save();
         }
 
+        public async Task EditResidentCardAtDB(ResidentCard residentCard, int userId)
+        {
+            var checkUser = await IsUserInDataBase(userId);
+
+            if (!checkUser)
+            {
+                throw new Exception("Пользователь не найден в бд");
+            }
+
+            var user = await _context.Users
+                .Include(u => u.Profile)
+                    .ThenInclude(p => p.ResidentCard)
+                .FirstOrDefaultAsync(u => u.Id == userId);
+            
+            user.Profile.ResidentCard.DocumentNumber = residentCard.DocumentNumber;
+            user.Profile.ResidentCard.DocumentSerie = residentCard.DocumentSerie;
+            user.Profile.ResidentCard.DateOfIssue = residentCard.DateOfIssue;
+            user.Profile.ResidentCard.DateOfExpiry = residentCard.DateOfExpiry;
+            user.Profile.ResidentCard.IssuingAuthority = residentCard.IssuingAuthority;
+
+            await Save();
+        }
+
+        public async Task EditTemporaryResidencePermitAtDB(TemporaryResidencePermit temporaryResidencePermit, int userId)
+        {
+            var checkUser = await IsUserInDataBase(userId);
+
+            if (!checkUser)
+            {
+                throw new Exception("Пользователь не найден в бд");
+            }
+
+            var user = await _context.Users
+                .Include(u => u.Profile)
+                    .ThenInclude(p => p.TemporaryResidencePermit)
+                .FirstOrDefaultAsync(u => u.Id == userId);
+
+            user.Profile.TemporaryResidencePermit.DocumentNumber = temporaryResidencePermit.DocumentNumber;
+            user.Profile.TemporaryResidencePermit.DacisionDate = temporaryResidencePermit.DacisionDate;
+            user.Profile.TemporaryResidencePermit.DateOfExpiry = temporaryResidencePermit.DateOfExpiry;
+            user.Profile.TemporaryResidencePermit.IssuingAuthority = temporaryResidencePermit.IssuingAuthority;
+
+            await Save();
+        }
+
         public async Task<UserModel> GetProfileFromDB(int userId)
         {
             var user = await _context.Users

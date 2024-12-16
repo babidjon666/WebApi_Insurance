@@ -12,5 +12,7 @@ namespace backend.Interfaces.Profile
         Task<UserModel> GetProfileFromDB(int userId);
         Task EditPassportAtDB(Passport passport, int userId);
         Task EditEmploymentContractAtDB(EmploymentContract employmentContract, int userId);
+        Task EditResidentCardAtDB(ResidentCard residentCard, int userId);
+        Task EditTemporaryResidencePermitAtDB(TemporaryResidencePermit temporaryResidencePermit, int userId);
     }
 }

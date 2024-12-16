@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, DatePicker, Button, Select, message, Modal } from 'antd';
+import { Form, Input, DatePicker, Button, Select, message, Modal, Space } from 'antd';
 import dayjs from 'dayjs';
 import { getNationalityName, formatDate, editPassport } from './ClientService';
+import { EditOutlined } from "@ant-design/icons";
 
 export const Passport = ( {user, fetchProfile} ) => {
     const [isEditingPassport, setIsEditingPassport] = useState(false);
@@ -14,7 +15,7 @@ export const Passport = ( {user, fetchProfile} ) => {
     const handleSubmit = async (values) => {
         try {
             const payload = {
-                userId: user.id,
+                id: user.id,
                 documentNumber: values.documentNumber,
                 serie: values.serie,
                 sex: values.sex === 'true' ? true : false,
@@ -29,7 +30,7 @@ export const Passport = ( {user, fetchProfile} ) => {
             };
 
             await editPassport(
-                payload.userId,
+                payload.id,
                 payload.documentNumber,
                 payload.serie,
                 payload.sex,
@@ -54,7 +55,16 @@ export const Passport = ( {user, fetchProfile} ) => {
 
     return (
         <div className="passport-info">
-            <h4 className="personal-info-header">Passport</h4>
+             <div className="personal-info-header">
+                <Space align="center">
+                    <h4 >Passport</h4>
+                    <Button
+                    type="primary"
+                    icon={<EditOutlined />}
+                    onClick={() => setIsEditingPassport(true)}
+                    />
+                </Space>
+            </div>
             
             <Modal
                 title="Edit Passport Info"
@@ -219,9 +229,6 @@ export const Passport = ( {user, fetchProfile} ) => {
                         <p><span className="personal-info-label">Date of Birth:</span> {formatDate(user.profile.passport.dateOfBirth)}</p>
                         <p><span className="personal-info-label">Date of Expiry:</span> {formatDate(user.profile.passport.dateOfExpiry)}</p>
                     </div>
-                    <Button type="primary" onClick={() => setIsEditingPassport(true)}>
-                        Edit Passport Info
-                    </Button>
                 </div>
             )}
         </div>

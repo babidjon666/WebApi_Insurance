@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, DatePicker, Button, Select, message, Modal } from 'antd';
+import { Form, Input, DatePicker, Button, Space, message, Modal } from 'antd';
 import dayjs from 'dayjs';
 import { getNationalityName, formatDate, editEmploymentContract } from './ClientService';
+import { EditOutlined } from "@ant-design/icons";
+
 
 export const EmploymentContract = ( {user, fetchProfile} ) => {
     const [isEditingContract, setIsEditingContract] = useState(false);
@@ -14,7 +16,7 @@ export const EmploymentContract = ( {user, fetchProfile} ) => {
     const handleSubmit = async (values) => {
         try {
             const payload = {
-                userId: user.id,
+                id: user.id,
                 numberOfContract: values.numberOfContract,
                 date: values.date.format('YYYY-MM-DD'),
                 inn: values.inn,    
@@ -22,7 +24,7 @@ export const EmploymentContract = ( {user, fetchProfile} ) => {
             };
 
             await editEmploymentContract(
-                payload.userId,
+                payload.id,
                 payload.numberOfContract,
                 payload.date,
                 payload.inn,
@@ -41,7 +43,16 @@ export const EmploymentContract = ( {user, fetchProfile} ) => {
 
     return (
         <div className="passport-info">
-            <h4 className="personal-info-header">Employment Contract</h4>
+            <div className="personal-info-header">
+                <Space align="center">
+                    <h4>Employment</h4>
+                    <Button
+                    type="primary"
+                    icon={<EditOutlined />}
+                    onClick={() => setIsEditingContract(true)}
+                    />
+                </Space>
+            </div>
             
             <Modal
                 title="Edit Passport Info"
@@ -118,9 +129,6 @@ export const EmploymentContract = ( {user, fetchProfile} ) => {
                         <p><span className="personal-info-label">KPP:</span> {user.profile.employmentContract.kpp}</p>
                         <p><span className="personal-info-label">Date:</span> {formatDate(user.profile.employmentContract.date)}</p>
                     </div>
-                    <Button type="primary" onClick={() => setIsEditingContract(true)}>
-                        Edit Employmnet Contract Info
-                    </Button>
                 </div>
             )}
         </div>

@@ -50,7 +50,7 @@ export const formatDate = (date) => {
 
 // Функция для редактирования пасспорта
 export const editPassport = async (
-    userId,
+    id,
     documentNumber,
     serie,
     sex,
@@ -76,7 +76,7 @@ export const editPassport = async (
         const response = await axios.post(
             "http://localhost:5134/api/Profile/EditPassport", // Убедитесь, что URL правильный
             {
-                userId: userId,
+                id: id,
                 documentNumber: documentNumber,
                 serie: serie,
                 sex: sex,
@@ -104,7 +104,7 @@ export const editPassport = async (
 };
 
 export const editEmploymentContract = async (
-    userId,
+    id,
     numberOfContract,
     date,
     inn,
@@ -123,11 +123,93 @@ export const editEmploymentContract = async (
         const response = await axios.post(
             "http://localhost:5134/api/Profile/EditemploymentContract", // Убедитесь, что URL правильный
             {
-                userId: userId,
+                id: id,
                 numberOfContract: numberOfContract,
                 date: date,
                 inn: inn,
                 kpp: kpp
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`, 
+                },
+            }
+        );
+
+        return response.data; 
+    } catch (error) {
+        console.error("Passport error:", error);
+        throw error; 
+    }
+};
+
+export const editResidentCard = async (
+    id,
+    documentNumber,
+    documentSerie,
+    dateOfIssue,
+    dateOfExpiry,
+    issuingAuthority
+) => {
+    try {
+        // Получаем токен из localStorage
+        const token = localStorage.getItem("userToken");
+
+        // Если токен отсутствует, выбрасываем ошибку
+        if (!token) {
+            throw new Error("Unauthorized: Token is missing");
+        }
+
+        // Отправляем POST-запрос с токеном в заголовке
+        const response = await axios.post(
+            "http://localhost:5134/api/Profile/EditResidentCard", // Убедитесь, что URL правильный
+            {
+                id: id,
+                documentNumber: documentNumber,
+                documentSerie: documentSerie,
+                dateOfIssue: dateOfIssue,
+                dateOfExpiry: dateOfExpiry,
+                issuingAuthority: issuingAuthority
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`, 
+                },
+            }
+        );
+
+        return response.data; 
+    } catch (error) {
+        console.error("Passport error:", error);
+        throw error; 
+    }
+};
+
+export const editTemporaryResidencePermit = async (
+    id,
+    documentNumber,
+    dacisionDate,
+    dateOfExpiry,
+    issuingAuthority
+) => {
+    try {
+        // Получаем токен из localStorage
+        const token = localStorage.getItem("userToken");
+
+        // Если токен отсутствует, выбрасываем ошибку
+        if (!token) {
+            throw new Error("Unauthorized: Token is missing");
+        }
+
+        // Отправляем POST-запрос с токеном в заголовке
+        const response = await axios.post(
+            "http://localhost:5134/api/Profile/EditTemporaryResidencePermit", // Убедитесь, что URL правильный
+            {
+                id: id,
+                documentNumber: documentNumber,
+                dacisionDate: dacisionDate,
+                dateOfExpiry: dateOfExpiry,
+                issuingAuthority: issuingAuthority
             },
             {
                 headers: {

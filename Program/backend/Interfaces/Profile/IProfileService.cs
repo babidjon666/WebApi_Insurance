@@ -4,14 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using backend.Models;
 using backend.Models.Documents;
-using backend.Models.DTO.Profile;
 
 namespace backend.Interfaces.Profile
 {
     public interface IProfileService
     {
         Task<UserModel> GetUserProfileService(int userId);
-        Task EditPassportService(PassportDTO passport);
-        Task EditEmploymentContractService(EmploymentContractDTO employmentContract);
+        Task EditPassportService(Passport passport);
+        Task EditEmploymentContractService(EmploymentContract employmentContract);
+        Task EditResidentCardService(ResidentCard residentCard);
+        Task EditTemporaryResidencePermitService(TemporaryResidencePermit temporaryResidencePermit);
     }
 }
