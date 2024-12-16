@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using backend.Interfaces.Profile;
 using backend.Repositories;
 using backend.Interfaces.Terms;
+using backend.Interfaces.RequestInterfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,12 +54,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<ITermsRepository, TermRepository>();
+builder.Services.AddScoped<IRequestRepository, RequestRepository>();
 
 // Регистрация сервисов
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<JWTSettings>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<ITermService, TermService>();
+builder.Services.AddScoped<IRequestService, RequestService>();
 
 builder.Services.AddCors(options =>
 {

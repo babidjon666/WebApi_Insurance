@@ -1,5 +1,4 @@
 import axios from "axios";
-import dayjs from 'dayjs';
 
 // Функция для получения terms 
 export const getTerms = async () => {

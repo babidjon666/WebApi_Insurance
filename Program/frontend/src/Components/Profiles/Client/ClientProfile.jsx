@@ -6,6 +6,7 @@ import { getProfile } from "./ClientService";
 
 import { Profile } from "./Profile";
 import { Terms } from './Terms';
+import { Requests } from './Requests';
 
 export const ClientProfile = () =>{
     const [user, setUser] = useState(null);
@@ -94,6 +95,10 @@ export const ClientProfile = () =>{
 
                 {activeSection === 'Terms' && user && (
                     <Terms />
+                )}
+
+                {activeSection === 'Requests' && user && (
+                    <Requests id={id} />
                 )}
             </div>
         </div>

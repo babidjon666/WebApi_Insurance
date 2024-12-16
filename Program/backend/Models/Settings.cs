@@ -8,6 +8,6 @@ namespace backend.Models
     public class Settings
     {
         public int Id { get; set; }
-        public string Goal { get; set; }
+        public string Goal { get; set; } = string.Empty;
     }
 }

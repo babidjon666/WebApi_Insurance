@@ -19,9 +19,16 @@ namespace backend.Data
         public DbSet<ResidentCard> ResidentCards { get; set; }
         public DbSet<TemporaryResidencePermit> TemporaryResidencePermits { get; set; }
         public DbSet<Term> Terms { get; set; }
+        public DbSet<Request> Requests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Request>()
+                .HasOne(r => r.User)       
+                .WithMany(u => u.Requests) 
+                .HasForeignKey(r => r.UserId) 
+                .OnDelete(DeleteBehavior.Cascade); 
+                
             modelBuilder.Entity<UserModel>()
                 .HasOne(u => u.Profile)
                 .WithOne()

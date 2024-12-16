@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace backend.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class UpdateModel : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -60,7 +60,7 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Request",
+                name: "Requests",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -73,9 +73,9 @@ namespace backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Request", x => x.Id);
+                    table.PrimaryKey("PK_Requests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Request_Users_UserId",
+                        name: "FK_Requests_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -175,8 +175,8 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Request_UserId",
-                table: "Request",
+                name: "IX_Requests_UserId",
+                table: "Requests",
                 column: "UserId");
         }
 
@@ -190,7 +190,7 @@ namespace backend.Migrations
                 name: "Passports");
 
             migrationBuilder.DropTable(
-                name: "Request");
+                name: "Requests");
 
             migrationBuilder.DropTable(
                 name: "ResidentCards");

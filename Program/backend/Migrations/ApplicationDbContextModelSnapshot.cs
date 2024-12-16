@@ -185,7 +185,7 @@ namespace backend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Request");
+                    b.ToTable("Requests");
                 });
 
             modelBuilder.Entity("backend.Models.Term", b =>

@@ -12,8 +12,8 @@ using backend.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241216042130_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241216202102_UpdateModel")]
+    partial class UpdateModel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -188,7 +188,7 @@ namespace backend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Request");
+                    b.ToTable("Requests");
                 });
 
             modelBuilder.Entity("backend.Models.Term", b =>
