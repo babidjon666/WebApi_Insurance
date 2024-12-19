@@ -17,7 +17,7 @@ namespace backend.Controllers
             this.profileService = profileService;
         }
 
-        [Authorize(Roles = "Client")]
+        [Authorize(Roles = "Client,Admin")]
         [HttpGet("GetUserProfile")]
         public async Task<ActionResult<UserModel>> GetUserProfile(int userId)
         {

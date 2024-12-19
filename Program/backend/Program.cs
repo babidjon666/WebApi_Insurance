@@ -84,11 +84,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthentication(); // Аутентификация
 app.UseAuthorization();  // Авторизация
-app.UseCors("CorsPolicy");
 
 // Configure endpoints for controllers 
 app.UseEndpoints(endpoints =>

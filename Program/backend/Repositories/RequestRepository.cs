@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using backend.Data;
+using backend.Enums;
 using backend.Interfaces.RequestInterfaces;
 using backend.Models;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,29 @@ namespace backend.Repositories
 
             _context.Requests.Add(request);
             await Save();
+        }
+
+        public async Task EditRequestStatusAtDB(int requestId, RequestStatus status)
+        {
+            var request = await _context.Requests
+                .FirstOrDefaultAsync(r => r.Id == requestId);
+            
+            if (request == null)
+            {
+                throw new Exception("Заявка не найдена в бд");
+            }
+
+            request.RequestStatus = status;
+            await Save();
+        }
+
+        public async Task<IEnumerable<Request>> GetAllWaitingRequestsFromDB()
+        {
+            var requests = await _context.Requests
+                .Where(r => r.RequestStatus == Enums.RequestStatus.InProcess)
+                .ToListAsync();
+            
+            return requests;
         }
 
         public async Task<IEnumerable<Request>> GetUsersRequestsAtDB(int userId)

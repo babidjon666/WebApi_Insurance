@@ -25,3 +25,4 @@ export const getTerms = async () => {
         throw error;
     }
 };
+
