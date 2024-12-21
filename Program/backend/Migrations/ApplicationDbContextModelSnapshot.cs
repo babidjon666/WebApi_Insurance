@@ -147,6 +147,30 @@ namespace backend.Migrations
                     b.ToTable("TemporaryResidencePermits");
                 });
 
+            modelBuilder.Entity("backend.Models.Policy", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PolicyType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Policies");
+                });
+
             modelBuilder.Entity("backend.Models.Profile", b =>
                 {
                     b.Property<int>("Id")
@@ -276,6 +300,17 @@ namespace backend.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("backend.Models.Policy", b =>
+                {
+                    b.HasOne("backend.Models.UserModel", "User")
+                        .WithMany("Policies")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("backend.Models.Profile", b =>
                 {
                     b.HasOne("backend.Models.UserModel", null)
@@ -309,6 +344,8 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.UserModel", b =>
                 {
+                    b.Navigation("Policies");
+
                     b.Navigation("Profile");
 
                     b.Navigation("Requests");

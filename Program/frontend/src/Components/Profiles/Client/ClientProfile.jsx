@@ -53,7 +53,7 @@ export const ClientProfile = () =>{
     return (
         <div className="dashboard-container">
             <div className="profile-header">
-                <Avatar
+                <Avatar 
                     src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${id}`}
                     size={100}
                     style={{

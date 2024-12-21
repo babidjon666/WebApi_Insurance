@@ -62,7 +62,7 @@ namespace backend.Controllers
             {
                 var user = await authService.LoginService(loginRequest.Login, loginRequest.Password);
 
-                var token = jwtService.GenerateJwtToken(user); // Используем сервис для генерации токена
+                var token = jwtService.GenerateJwtToken(user); 
                 return Ok(new { Token = token, UserId = user.Id, Role = user.Role });
             }
             catch (Exception ex)

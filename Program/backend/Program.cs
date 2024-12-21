@@ -11,8 +11,11 @@ using backend.Interfaces.Profile;
 using backend.Repositories;
 using backend.Interfaces.Terms;
 using backend.Interfaces.RequestInterfaces;
+using backend.Interfaces.Policy;
+using QuestPDF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+QuestPDF.Settings.License = LicenseType.Community;
 
 // Add services to the container.
 builder.Services.AddControllers()
@@ -55,6 +58,7 @@ builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<ITermsRepository, TermRepository>();
 builder.Services.AddScoped<IRequestRepository, RequestRepository>();
+builder.Services.AddScoped<IPolicyRepository, PolicyRepository>();
 
 // Регистрация сервисов
 builder.Services.AddScoped<IAuthService, AuthService>();
@@ -62,6 +66,7 @@ builder.Services.AddScoped<JWTSettings>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<ITermService, TermService>();
 builder.Services.AddScoped<IRequestService, RequestService>();
+builder.Services.AddScoped<IPolicyService, PolicyService>();
 
 builder.Services.AddCors(options =>
 {

@@ -16,5 +16,6 @@ namespace backend.Models
         public Profile? Profile { get; set; } 
         public Role Role { get; set; }
         public List<Request> Requests { get; set; } = new List<Request>();
+        public List<Policy> Policies { get; set; } = new List<Policy>();
     }
 }

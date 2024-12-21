@@ -20,6 +20,7 @@ namespace backend.Data
         public DbSet<TemporaryResidencePermit> TemporaryResidencePermits { get; set; }
         public DbSet<Term> Terms { get; set; }
         public DbSet<Request> Requests { get; set; }
+        public DbSet<Policy> Policies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,7 +29,13 @@ namespace backend.Data
                 .WithMany(u => u.Requests) 
                 .HasForeignKey(r => r.UserId) 
                 .OnDelete(DeleteBehavior.Cascade); 
-                
+
+            modelBuilder.Entity<Policy>()
+                .HasOne(r => r.User)       
+                .WithMany(u => u.Policies) 
+                .HasForeignKey(r => r.UserId) 
+                .OnDelete(DeleteBehavior.Cascade); 
+
             modelBuilder.Entity<UserModel>()
                 .HasOne(u => u.Profile)
                 .WithOne()
